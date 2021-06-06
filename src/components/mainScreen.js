@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,6 +14,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import logo from "../assets/logoNew.png";
 import SubmitSnackbar from "./snackbar";
+import "../App.css";
 
 const textfieldStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +32,59 @@ const textfieldStyles = makeStyles((theme) => ({
   },
 }));
 
+const useStyles = makeStyles({
+  gridMain: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  gridItem: {
+    width: "inherit",
+    border: "1px solid rgba(0, 0, 0, 0.12)",
+    padding: "10px",
+  },
+  logoImg: {
+    marginTop: "15px",
+    justifyContent: "center",
+  },
+  cardMain: {
+    width: "100%",
+    justifyContent: "center",
+    fontSize: "15px",
+    display: "flex",
+    border: "none",
+  },
+  cardTitle: {
+    justifyContent: "center",
+    display: "flex",
+    color: "dark",
+  },
+  cardButton: {
+    backgroundColor: "#1a73e8",
+    marginLeft: "10px",
+    marginTop: "8px",
+    float: "right",
+  },
+  linkTypo: {
+    float: "left",
+    fontWeight: "bold",
+    marginTop: "10px",
+    color: "#1a73e8",
+  },
+  cardEmail: {
+    borderStyle: "solid",
+    borderColor: "grey",
+    borderWidth: "1px",
+    borderRadius: "10px",
+    width: "fit-content",
+    padding: "3px",
+    fontWeight: "bold",
+    margin: "auto",
+  },
+});
+
 const NexottoLoginScreen = () => {
   const textclasses = textfieldStyles();
+  const classes = useStyles();
   const [email, setemail] = React.useState("");
   const [password, setpassword] = React.useState("");
 
@@ -71,30 +123,24 @@ const NexottoLoginScreen = () => {
         <h2>{error.message}</h2>
       ) : (
         <>
-          <Grid container style={{ display: "flex", justifyContent: "center" }}>
-            <Grid item md={4} style={{ width: "inherit" }}>
-              <Card
-                variant="outlined"
-                style={{
-                  width: "100%",
-                  justifyContent: "center",
-                  fontSize: "15px",
-                  display: "flex",
-                }}
-              >
+          <Grid container className={classes.gridMain}>
+            <Grid item md={4} className={classes.gridItem}>
+              <Typography component="h3">
+                <img
+                  src={logo}
+                  height="30px"
+                  width="120px"
+                  alt="company_logo"
+                  className={classes.logoImg}
+                />
+              </Typography>
+              <Card variant="outlined" className={classes.cardMain}>
                 {!user ? (
                   <CardContent>
-                    <Typography component="h3">
-                      <img src={logo} height="30px" width="120px" />
-                    </Typography>
                     <Typography
                       gutterBottom
                       variant="h6"
-                      style={{
-                        justifyContent: "center",
-                        display: "flex",
-                        color: "dark",
-                      }}
+                      className={classes.cardTitle}
                     >
                       Sign In
                     </Typography>
@@ -120,62 +166,31 @@ const NexottoLoginScreen = () => {
                       <Button
                         type="submit"
                         variant="contained"
-                        style={{
-                          backgroundColor: "#1a73e8",
-                          marginLeft: "10px",
-                          marginTop: "8px",
-                          float: "right",
-                        }}
+                        className={classes.cardButton}
                       >
                         <Typography style={{ color: "#FFFFFF" }}>
                           Next
                         </Typography>
                       </Button>
                     </form>
-                    <Typography
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        marginTop: "10px",
-                        color: "#1a73e8",
-                      }}
-                    >
-                      <Link to="#" style={{ textDecoration: "none" }}>
+                    <Typography className={classes.linkTypo}>
+                      <Link to="/" style={{ textDecoration: "none" }}>
                         Create Account
                       </Link>
                     </Typography>
                   </CardContent>
                 ) : (
                   <CardContent style={{ justifyContent: "center" }}>
-                    <Typography component="h3">
-                      <img src={logo} height="30px" width="120px" />
-                    </Typography>
                     <br />
                     <Typography
                       gutterBottom
                       variant="h6"
-                      style={{
-                        justifyContent: "center",
-                        display: "flex",
-                        color: "dark",
-                      }}
+                      className={classes.cardTitle}
                     >
                       Welcome {user.user.firstName} {user.user.lastName}
                     </Typography>
 
-                    <Typography
-                      style={{
-                        borderStyle: "solid",
-                        borderColor: "grey",
-                        borderWidth: "1px",
-                        borderRadius: "10px",
-                        width: "fit-content",
-                        justifyContent: "center",
-                        padding: "3px",
-                        fontWeight: "bold",
-                        margin: "auto",
-                      }}
-                    >
+                    <Typography className={classes.cardEmail}>
                       {user.user.email}
                     </Typography>
                     <form onSubmit={submitAuthHandler}>

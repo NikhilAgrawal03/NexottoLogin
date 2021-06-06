@@ -1,6 +1,6 @@
 import "./App.css";
 import NexottoLoginScreen from "./components/mainScreen";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (

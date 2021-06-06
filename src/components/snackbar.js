@@ -1,11 +1,21 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function SubmitSnackbar({ userAuth, onSubmit }) {
+const useStyles = makeStyles({
+  button: {
+    marginLeft: "10px",
+    marginTop: "8px",
+    backgroundColor: "#1a73e8",
+    color: "#FFFFFF",
+  },
+});
+
+const SubmitSnackbar = ({ userAuth, onSubmit }) => {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -25,8 +35,7 @@ export default function SubmitSnackbar({ userAuth, onSubmit }) {
       <Button
         type="submit"
         variant="contained"
-        color="primary"
-        style={{ marginLeft: "10px", marginTop: "8px" }}
+        className={classes.button}
         onClick={handleClick}
       >
         Submit
@@ -59,4 +68,6 @@ export default function SubmitSnackbar({ userAuth, onSubmit }) {
       )}
     </div>
   );
-}
+};
+
+export default SubmitSnackbar;

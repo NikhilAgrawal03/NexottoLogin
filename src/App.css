@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiPaper-outlined {
+  border: none;
+}
+
+.grid-main {
+  display: "flex";
+  justify-content: "center";
+}
