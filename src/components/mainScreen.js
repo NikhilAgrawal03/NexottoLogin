@@ -197,8 +197,13 @@ const NexottoLoginScreen = () => {
                     <Typography className={classes.cardEmail}>
                       {user.user.email}
                     </Typography>
+                    <br />
                     <form onSubmit={submitAuthHandler}>
                       <FormControl>
+                        <Typography style={{ color: "rgba(0, 0, 0, 0.64)" }}>
+                          To continue verify,it's you
+                        </Typography>
+                        <br />
                         <TextField
                           id="standard-full-width"
                           value={password}
