@@ -58,6 +58,14 @@ const SubmitSnackbar = ({ userAuth, onSubmit }) => {
                 color="inherit"
                 onClick={handleClose}
               >
+                <a
+                  href="http://nexotto.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: "#FFFFFF" }}
+                >
+                  Visit Nexotto
+                </a>
                 <CloseIcon fontSize="small" />
               </IconButton>
             </React.Fragment>

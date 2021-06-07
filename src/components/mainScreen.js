@@ -15,6 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import logo from "../assets/logoNew.png";
 import SubmitSnackbar from "./snackbar";
 import "../App.css";
+import Loader from "./loader";
 
 const textfieldStyles = makeStyles((theme) => ({
   root: {
@@ -72,9 +73,9 @@ const useStyles = makeStyles({
   },
   cardEmail: {
     borderStyle: "solid",
-    borderColor: "grey",
+    borderColor: "rgba(0, 0, 0, 0.29)",
     borderWidth: "1px",
-    borderRadius: "10px",
+    borderRadius: "18px",
     width: "fit-content",
     padding: "3px",
     fontWeight: "bold",
@@ -118,7 +119,7 @@ const NexottoLoginScreen = () => {
       style={{ justifyContent: "center", display: "flex" }}
     >
       {loading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : error ? (
         <h2>{error.message}</h2>
       ) : (
@@ -174,7 +175,10 @@ const NexottoLoginScreen = () => {
                       </Button>
                     </form>
                     <Typography className={classes.linkTypo}>
-                      <Link to="/" style={{ textDecoration: "none" }}>
+                      <Link
+                        to="/"
+                        style={{ textDecoration: "none", color: "#1a73e8" }}
+                      >
                         Create Account
                       </Link>
                     </Typography>
