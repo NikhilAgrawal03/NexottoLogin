@@ -14,6 +14,8 @@ import {
 import Grid from "@material-ui/core/Grid";
 import logo from "../assets/logoNew.png";
 import SubmitSnackbar from "./snackbar";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import "../App.css";
 import Loader from "./loader";
 
@@ -81,6 +83,10 @@ const useStyles = makeStyles({
     fontWeight: "bold",
     margin: "auto",
   },
+  checkbox: {
+    float: "left",
+    fonsize: "0.8rem",
+  },
 });
 
 const NexottoLoginScreen = () => {
@@ -88,6 +94,7 @@ const NexottoLoginScreen = () => {
   const classes = useStyles();
   const [email, setemail] = React.useState("");
   const [password, setpassword] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -211,6 +218,7 @@ const NexottoLoginScreen = () => {
                           label="Password"
                           style={{ margin: 8 }}
                           placeholder="Password"
+                          type={checked ? "text" : "password"}
                           margin="normal"
                           variant="outlined"
                           InputLabelProps={{
@@ -220,6 +228,18 @@ const NexottoLoginScreen = () => {
                         />
                       </FormControl>
                       <br />
+                      <FormControlLabel
+                        className={classes.checkbox}
+                        control={
+                          <Checkbox
+                            checked={checked}
+                            color="primary"
+                            onChange={(e) => setChecked(e.target.checked)}
+                            inputProps={{ "aria-label": "secondary checkbox" }}
+                          />
+                        }
+                        label="Show Password"
+                      />
 
                       <SubmitSnackbar
                         userAuth={userAuthInfo}
